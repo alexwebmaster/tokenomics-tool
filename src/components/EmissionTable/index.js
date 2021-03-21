@@ -11,7 +11,7 @@ export default class EmissionPanel extends Component {
      */ 
     this.state = {
       currentView: 'days',
-      tokensPerBlock: 1,
+      tokensPerBlock: 0.9,
       blocksPerPeriod: 43200, // 1 day
       communityFeePercent: 7.5,
       devFeePercent: 4.5,
@@ -30,6 +30,7 @@ export default class EmissionPanel extends Component {
           totalMintedCommunity: 0,
           totalMintedDevs: 0,
           totalMintedFounders: 0,
+          grandTotalSupply: 0
         },
       ],
       chartDataEpochs: [],
@@ -120,6 +121,7 @@ export default class EmissionPanel extends Component {
         totalMintedCommunity: endSupply * (this.state.communityFeePercent / 100),
         totalMintedDevs: endSupply * (this.state.devFeePercent / 100),
         totalMintedFounders: endSupply * (this.state.founderFeePercent / 100),
+        grandTotalSupply: endSupply + (endSupply * (this.state.communityFeePercent / 100)) + (endSupply * (this.state.devFeePercent / 100)) + (endSupply * (this.state.founderFeePercent / 100))
       }
     } else {
       console.log(this.state.epochsData)
@@ -139,7 +141,7 @@ export default class EmissionPanel extends Component {
         totalMintedCommunity: endSupply * (this.state.communityFeePercent / 100),
         totalMintedDevs: endSupply * (this.state.devFeePercent / 100),
         totalMintedFounders: endSupply * (this.state.founderFeePercent / 100),
-      
+        grandTotalSupply: endSupply + (endSupply * (this.state.communityFeePercent / 100)) + (endSupply * (this.state.devFeePercent / 100)) + (endSupply * (this.state.founderFeePercent / 100))
       }
     }
   }
@@ -162,8 +164,8 @@ export default class EmissionPanel extends Component {
     return (
       <div className="w-full">
         
-        <div className="w-full flex flex-wrap mx-auto p-auto text-2xl bg-gray-100">
-          <div className="text-4xl p-8 m-8 text-purple-600"> MochiSwap Tokenomics Modeling Tool </div>
+        <div className="w-5/6 flex flex-wrap content-center mx-auto my-4 text-xs text-white bg-pink-600 shadow-lg">
+          <div className="text-4xl p-8 m-8 text-white"> MochiSwap Tokenomics Modeling Tool </div>
         </div>
 
         <div className="w-5/6 flex flex-wrap content-center mx-auto my-4 text-xs text-white bg-pink-600">
@@ -172,7 +174,7 @@ export default class EmissionPanel extends Component {
             <div className="w-full p-6">
               <div className="">
                 <label className="">
-                  TOKENS PER BLOCK
+                  BASE TOKENS PER BLOCK
                 <input className="py-1 pl-3 text-black ml-3" name="x_0_tpb" type="text" size="3" value={this.state.tokensPerBlock} onChange={this.handleTokensPerBlockChange.bind(this)} />
                 </label>
               </div>
@@ -381,10 +383,156 @@ export default class EmissionPanel extends Component {
           </div>  
         </div>
 
+        <div className="w-5/6 flex flex-wrap content-center mx-auto my-4 text-xs text-white">
+         
+         <div className="w-1/6 bg-pink-600 px-6 border-4 border-r-0 border-gray-300 border-opacity-60">
+           
+           <div className="my-4 flex flex-row">
+             <div className="w-3/4">
+               <label for="e_1_mult">
+                 STAGE 7 MULTIPLIER
+               </label>
+             </div>
+             <div className="w-1/4">
+               <input className="py-1 pl-3 text-black" id="e_1_mult" name="e_1_mult" type="text" size="3" value={this.state.epochConfigs[6].mult} onChange={this.handleEpochChange} /> x
+             </div>
+           </div>
+
+           <div className="my-4 flex flex-row">
+             <div className="w-3/4">
+               <label for="e_1_periods">
+                 STAGE 7 LENGTH 
+               </label>
+             </div>
+             <div className="w-1/4">
+               <input className="border-r-0 py-1 pl-3 text-black" name="e_1_periods" type="text" size="3" value={this.state.epochConfigs[6].periods} onChange={this.handleEpochChange} />
+             </div>
+           </div>
+         </div>
+
+         <div className="w-1/6 bg-pink-600 px-6 border-4 border-r-0 border-gray-300 border-opacity-60">
+           <div className="my-4 flex flex-row">
+             <div className="w-3/4">
+               <label for="e_2_mult">
+                 STAGE 8 MULTIPLIER
+               </label>
+             </div>
+             <div className="w-1/4">
+               <input className="py-1 pl-3 text-black" name="e_2_mult" type="text" size="3" value={this.state.epochConfigs[7].mult} onChange={this.handleEpochChange} /> x
+             </div>
+           </div>
+           <div className="my-4 flex flex-row">
+             <div className="w-3/4">
+               <label for="e_2_periods">
+                 STAGE 8 LENGTH
+               </label>
+             </div>
+             <div className="w-1/4">
+               <input className="py-1 pl-3 text-black" name="e_2_periods" type="text" size="3" value={this.state.epochConfigs[7].periods} onChange={this.handleEpochChange} />
+             </div>
+           </div>
+         </div>
+
+         <div className="w-1/6 bg-pink-600 px-6 border-4 border-r-0 border-gray-300 border-opacity-60">
+           <div className="my-4 flex flex-row">
+             <div className="w-3/4">
+               <label for="e_3_mult">
+                 STAGE 9 MULTIPLIER
+               </label>
+               </div>
+               <div className="w-1/4">
+                 <input className="border py-1 pl-3 text-black" name="e_3_mult" type="text" size="3" value={this.state.epochConfigs[8].mult} onChange={this.handleEpochChange} /> x 
+               </div>
+           </div>
+           <div className="my-4 flex flex-row">
+             <div className="w-3/4">
+               <label for="e_3_periods">
+                 STAGE 9 LENGTH
+               </label>
+             </div>
+             <div className="w-1/4">
+               <input className="border py-1 pl-3 text-black" name="e_3_periods" type="text" size="3" value={this.state.epochConfigs[8].periods} onChange={this.handleEpochChange} />
+             </div>
+           </div>
+         </div>
+
+         <div className="w-1/6 bg-pink-600 px-6 border-4 border-r-0 border-gray-300 border-opacity-60">
+           <div className="my-4 flex flex-row">
+             <div className="w-3/4">
+               <label for="e_4_mult">
+                 STAGE 10 MULTIPLIER
+               </label>
+             </div>
+             <div className="w-1/4">
+               <input className="border py-1 pl-3 text-black" name="e_4_mult" type="text" size="3" value={this.state.epochConfigs[9].mult} onChange={this.handleEpochChange} /> x 
+             </div>
+           </div>
+
+           <div className="my-4 flex flex-row">
+             <div className="w-3/4">
+               <label for="e_4_periods">
+                 STAGE 10 LENGTH
+               </label>
+             </div>
+             <div className="w-1/4">
+               <input className="border py-1 pl-3 border-r-0 text-black" name="e_4_periods" type="text" size="3" value={this.state.epochConfigs[9].periods} onChange={this.handleEpochChange} />
+             </div>
+           </div>
+         </div>
+
+         <div className="w-1/6 bg-pink-600 px-6 border-4 border-r-0 border-gray-300 border-opacity-60">
+           <div className="my-4 flex flex-row">
+             <div className="w-3/4">
+               <label for="e_5_mult">
+                 STAGE 11 MULTIPLIER
+               </label>
+             </div>
+             <div className="w-1/4">
+               <input className="py-1 pl-3 text-black" name="e_5_mult" type="text" size="3" value={this.state.epochConfigs[10].mult} onChange={this.handleEpochChange} /> x 
+             </div>
+           </div>
+
+           <div className="my-4 flex flex-row">
+             <div className="w-3/4">
+               <label for="e_5_periods">
+                 STAGE 11 LENGTH
+               </label>
+             </div>
+             <div className="w-1/4">
+               <input className="py-1 pl-3 text-black" name="e_5_periods" type="text" size="3" value={this.state.epochConfigs[10].periods} onChange={this.handleEpochChange} />
+             </div>
+           </div>
+         </div>
+
+         <div className="w-1/6 bg-pink-600 px-6 border-4 border-gray-300 border-opacity-60">
+           <div className="my-4 flex flex-row">
+             <div className="w-3/4">
+               <label for="e_6_mult">
+                 STAGE 12 MULTIPLIER
+               </label>
+             </div>
+             <div className="w-1/4">
+               <input className="py-1 pl-3 text-black" name="e_6_mult" type="text" size="3" value={this.state.epochConfigs[11].mult} onChange={this.handleEpochChange} /> x 
+             </div>
+           </div>
+
+           <div className="my-4 flex flex-row">
+             <div className="w-3/4">
+               <label for="e_6_periods">
+                 STAGE 12 LENGTH
+               </label>
+               </div>
+               <div className="w-1/4">
+               <input className="border py-1 pl-3 text-black" name="e_6_periods" type="text" size="3" value={this.state.epochConfigs[11].periods} onChange={this.handleEpochChange} />
+             </div>
+           </div>
+         </div>  
+       </div>
+
         <EmissionChart chartData={this.state.chartData} />
         <hr />
         
-        <p className="text-lg text-center font-bold m-5 mx-auto">Emission over first {this.state.epochConfigs.length / 2} months @ {this.state.tokensPerBlock} tokens per block - 6 bonus stages w/3 funds</p>
+        <p className="text-lg text-center font-bold m-5 mx-auto">Emission over first {this.state.epochConfigs.length / 2} months @ {this.state.tokensPerBlock} tokens per block - 12 bonus stages w/3 funds</p>
         <table className="rounded-t-lg m-5 w-5/6 mx-auto text-pink-100 bg-pink-700">
           <thead>
             <tr className="text-left border-b-2 border-pink-200 font-bold">
@@ -394,10 +542,11 @@ export default class EmissionPanel extends Component {
               <th className="px-4 py-3">End Block</th>
               <th className="px-4 py-3">Bonus Multiplier</th>
               <th className="px-4 py-3">Period Emission</th>
-              <th className="px-4 py-3">Cumulative Total</th>
+              <th className="px-4 py-3">Cumulative Rewards</th>
               <th className="px-4 py-3">Community Fund</th>
               <th className="px-4 py-3">Dev Vault</th>
               <th className="px-4 py-3">Founder Vault</th>
+              <th className="px-4 py-3">Total Supply</th>
             </tr>
           </thead>
           <tbody>
@@ -413,6 +562,7 @@ export default class EmissionPanel extends Component {
               <td className="px-4 py-3 border-b border-pink-500">{epoch.totalMintedCommunity}</td>
               <td className="px-4 py-3 border-b border-pink-500">{epoch.totalMintedDevs}</td>
               <td className="px-4 py-3 border-b border-pink-500">{epoch.totalMintedFounders}</td>
+              <td className="px-4 py-3 border-b border-pink-500">{epoch.grandTotalSupply}</td>
             </tr>
           ))}
           </tbody>
