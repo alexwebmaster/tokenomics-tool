@@ -134,8 +134,8 @@ export default class EmissionPanel extends Component {
         endSupply: endSupply,
         multiplier: this.state.epochConfigs[n].mult,
         periods: this.state.epochConfigs[n].periods,
-        startBlock: prevEndBlock++,
-        endBlock: prevEndBlock++ + (this.state.blocksPerPeriod * this.state.epochConfigs[n].periods),
+        startBlock: (prevEndBlock + 1),
+        endBlock: (prevEndBlock) + (this.state.blocksPerPeriod * this.state.epochConfigs[n].periods),
         bonusMultiplier: this.state.epochConfigs[n].mult,
         totalMinted: epochRewardsMinted,
         totalMintedCommunity: endSupply * (this.state.communityFeePercent / 100),
@@ -532,7 +532,7 @@ export default class EmissionPanel extends Component {
         <EmissionChart chartData={this.state.chartData} />
         <hr />
         
-        <p className="text-lg text-center font-bold m-5 mx-auto">Emission over first {this.state.epochConfigs.length / 2} months @ {this.state.tokensPerBlock} tokens per block - 12 bonus stages w/3 funds</p>
+        <p className="text-lg text-center font-bold m-5 mx-auto">Emission over first {this.state.epochConfigs.length} months @ {this.state.tokensPerBlock} tokens per block - 8 bonus stages w/3 funds</p>
         <table className="rounded-t-lg m-5 w-5/6 mx-auto text-pink-100 bg-pink-700">
           <thead>
             <tr className="text-left border-b-2 border-pink-200 font-bold">

@@ -178,12 +178,7 @@ const defaultEpochs = [
     startBlock: 0,
     periods: 28,
     mult: 1,
-  },
-  {
-    startBlock: 0,
-    periods: 28,
-    mult: 1,
-  },
+  }
 ]
 
 export { defaultEpochs }
