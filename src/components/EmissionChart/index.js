@@ -81,7 +81,7 @@ export default function EmissionChart(props) {
           }}
         >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="month" label={{ value: 'Months', position: 'insideBottomLeft', offset: 10 }}/>
+        <XAxis dataKey="epoch" label={{ value: 'Epochs', position: 'insideBottomLeft', offset: 10 }}/>
         <YAxis label={{ value: 'Tokens', position: 'insideBottomLeft', offset: 20 }}/>
         <Tooltip />
         <Legend />

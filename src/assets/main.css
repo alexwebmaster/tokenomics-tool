@@ -358,21 +358,6 @@ input {
   background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
 }
 
-.bg-red-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgba(254, 202, 202, var(--tw-bg-opacity));
-}
-
-.bg-red-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgba(252, 165, 165, var(--tw-bg-opacity));
-}
-
-.bg-red-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
-}
-
 .bg-pink-600 {
   --tw-bg-opacity: 1;
   background-color: rgba(219, 39, 119, var(--tw-bg-opacity));
@@ -381,6 +366,11 @@ input {
 .bg-pink-700 {
   --tw-bg-opacity: 1;
   background-color: rgba(190, 24, 93, var(--tw-bg-opacity));
+}
+
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgba(209, 213, 219, var(--tw-border-opacity));
 }
 
 .border-pink-200 {
@@ -393,8 +383,8 @@ input {
   border-color: rgba(236, 72, 153, var(--tw-border-opacity));
 }
 
-.border-opacity-50 {
-  --tw-border-opacity: 0.5;
+.border-opacity-60 {
+  --tw-border-opacity: 0.6;
 }
 
 .rounded-t-lg {
@@ -408,6 +398,14 @@ input {
 
 .border {
   border-width: 1px;
+}
+
+.border-r-0 {
+  border-right-width: 0px;
+}
+
+.border-l-0 {
+  border-left-width: 0px;
 }
 
 .border-b-2 {
@@ -430,16 +428,16 @@ input {
   display: table;
 }
 
+.flex-row {
+  flex-direction: row;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
 
 .content-center {
   align-content: center;
-}
-
-.content-start {
-  align-content: flex-start;
 }
 
 .font-semibold {
@@ -450,9 +448,9 @@ input {
   font-weight: 700;
 }
 
-.text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .text-lg {
@@ -492,6 +490,10 @@ input {
   margin-left: 0.75rem;
 }
 
+.p-6 {
+  padding: 1.5rem;
+}
+
 .p-8 {
   padding: 2rem;
 }
@@ -514,6 +516,10 @@ input {
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+.pt-1 {
+  padding-top: 0.25rem;
 }
 
 .pl-3 {
@@ -559,6 +565,14 @@ input {
 .text-pink-100 {
   --tw-text-opacity: 1;
   color: rgba(252, 231, 243, var(--tw-text-opacity));
+}
+
+.w-1\/4 {
+  width: 25%;
+}
+
+.w-3\/4 {
+  width: 75%;
 }
 
 .w-1\/6 {
