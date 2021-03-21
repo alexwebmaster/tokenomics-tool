@@ -159,9 +159,10 @@ export default class EmissionPanel extends Component {
       chartData: chartDataEpochs,
     });
   }
-
+ 
   render() {
     return (
+
       <div className="w-full">
         
         <div className="w-5/6 flex flex-wrap content-center mx-auto my-4 text-xs text-white bg-pink-600 shadow-lg">
