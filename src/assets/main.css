@@ -428,6 +428,11 @@ img {
   border-width: 0;
 }
 
+.bg-aqua-800 {
+  --tw-bg-opacity: 1;
+  background-color: #00ade8;
+}
+
 .bg-gray-800 {
   --tw-bg-opacity: 1;
   background-color: rgba(31, 41, 55, var(--tw-bg-opacity));

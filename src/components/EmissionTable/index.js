@@ -165,11 +165,11 @@ export default class EmissionPanel extends Component {
 
       <div className="w-full">
         
-        <div className="w-5/6 flex flex-wrap content-center mx-auto my-4 text-xs text-white bg-pink-600 shadow-lg">
+        <div className="w-5/6 flex flex-wrap content-center mx-auto my-4 text-xs text-white bg-gray-800 shadow-lg">
           <div className="text-4xl p-8 m-8 text-white"> MochiSwap Tokenomics Modeling Tool </div>
         </div>
 
-        <div className="w-5/6 flex flex-wrap content-center mx-auto my-4 text-xs text-white bg-pink-600">
+        <div className="w-5/6 flex flex-wrap content-center mx-auto my-4 text-xs text-white bg-aqua-800">
           
           <div className="w-1/6 border-4 border-r-0 border-gray-300 border-opacity-60">
             <div className="w-full p-6">
